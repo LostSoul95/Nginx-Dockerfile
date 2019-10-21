@@ -4,7 +4,7 @@
 ############################################################
 
 # Set the base image to Ubuntu
-FROM ubuntu:18.04
+FROM ubuntu
 
 # File Author / Maintainer
 MAINTAINER Maintaner Name
@@ -12,9 +12,10 @@ MAINTAINER Maintaner Name
 # Install Nginx
 
 # Add application repository URL to the default sources
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
+RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted" >> /etc/apt/sources.list
 
 # Update the repository
+#RUN apt-mark hold initscripts
 RUN apt-get update
 
 #RUN apt dist-upgrade
@@ -35,7 +36,7 @@ ADD nginx.conf /etc/nginx/
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Expose ports
-EXPOSE 8080
+EXPOSE 8085
 
 # Set the default command to execute
 # when creating a new container
